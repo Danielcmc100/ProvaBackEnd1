@@ -1,12 +1,6 @@
-package com.tech4me.prova.model;
+package com.tech4me.prova.view.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document("musicas")
-public class Musica {
-    @Id
-    private String id;
+public class MusicaRequest {
     private String titulo;
     private String artista;
     private String album;
@@ -14,12 +8,6 @@ public class Musica {
     private int anoLancamento;
     private String compositor;
 
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
     public String getTitulo() {
         return titulo;
     }
@@ -56,6 +44,4 @@ public class Musica {
     public void setCompositor(String compositor) {
         this.compositor = compositor;
     }
-
-    
 }
