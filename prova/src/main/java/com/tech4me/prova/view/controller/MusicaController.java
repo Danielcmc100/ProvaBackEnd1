@@ -3,6 +3,8 @@ package com.tech4me.prova.view.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import com.tech4me.prova.service.MusicaService;
 import com.tech4me.prova.shared.MusicaDto;
 import com.tech4me.prova.view.model.MusicaRequest;
@@ -16,11 +18,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PutMapping;
-
 
 @RestController
 @RequestMapping("/api/musicas")
@@ -42,7 +43,7 @@ public class MusicaController {
     }
 
     @PostMapping
-    private ResponseEntity<MusicaResponse> criarMusica(@RequestBody MusicaRequest musicaRequest){
+    private ResponseEntity<MusicaResponse> criarMusica(@RequestBody @Valid MusicaRequest musicaRequest){
         MusicaDto musicaDto = mapper.map(musicaRequest, MusicaDto.class);
         musicaDto = service.adicionarMuica(musicaDto);
         MusicaResponse musicaResponse = mapper.map(musicaDto, MusicaResponse.class);
@@ -56,7 +57,7 @@ public class MusicaController {
     }
 
     @PutMapping(value="/{id}")
-    private ResponseEntity<MusicaResponse> alterarMusica(@PathVariable String id, @RequestBody MusicaRequest musicarRequest) {
+    private ResponseEntity<MusicaResponse> alterarMusica(@PathVariable String id, @RequestBody @Valid MusicaRequest musicarRequest) {
         MusicaDto musicaDto = mapper.map(musicarRequest, MusicaDto.class);
         musicaDto = service.adicionarMuica(musicaDto);
         MusicaResponse musicaResponse = mapper.map(musicaDto, MusicaResponse.class);
